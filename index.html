@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROBOFEST 2026 | ROBOTiX Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800;900&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15103d;      /* ultramarine night */
+  --ink2:#221b5e;     /* raised panels */
+  --paper:#ece8ff;    /* pale lilac for light sections */
+  --volt:#ff5d8f;     /* hot coral-pink: main accent */
+  --sun:#ffc23d;      /* amber: secondary accent */
+  --mint:#38efc4;     /* mint: "online / ready" signal */
+  --txt:#f3f0ff;
+  --muted:#b5aee8;
+  --display:'Unbounded','Arial Black',sans-serif;
+  --body:'Outfit','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:20;background:rgba(21,16,61,.9);backdrop-filter:blur(8px);border-bottom:1px solid #ffffff18}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:var(--display);font-weight:900;font-size:1.05rem;text-decoration:none;letter-spacing:-.02em}
+.logo b{color:var(--volt)}
+nav ul{display:flex;gap:26px;list-style:none}
+nav ul a{text-decoration:none;color:var(--muted);font-weight:500}
+nav ul a:hover{color:var(--sun)}
+.btn{display:inline-block;font-family:var(--display);font-weight:800;font-size:.85rem;text-decoration:none;
+  padding:15px 26px;border-radius:14px;border:0;cursor:pointer;background:var(--volt);color:#fff;
+  box-shadow:0 6px 0 #b72f60;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(3px);box-shadow:0 3px 0 #b72f60}
+.btn.alt{background:transparent;color:var(--txt);box-shadow:none;border:2px solid var(--muted)}
+.btn.alt:hover{border-color:var(--sun);color:var(--sun);transform:none}
+
+/* HERO */
+.hero{position:relative;padding:60px 0 90px;
+  background:
+   radial-gradient(circle at 78% 30%,#ff5d8f33,transparent 45%),
+   linear-gradient(#ffffff0d 1px,transparent 1px) 0 0/44px 44px,
+   linear-gradient(90deg,#ffffff0d 1px,transparent 1px) 0 0/44px 44px,var(--ink)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;background:var(--ink2);padding:8px 16px;border-radius:99px;font-size:.9rem;color:var(--muted)}
+.status i{width:10px;height:10px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 var(--mint);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px #38efc400}}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,8.6vw,6.2rem);line-height:.95;letter-spacing:-.045em;margin:22px 0}
+h1 span{display:block;color:transparent;-webkit-text-stroke:2px var(--sun)}
+.lead{font-size:1.2rem;color:var(--muted);max-width:46ch;margin-bottom:30px}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap}
+.count{display:flex;gap:12px;margin-top:38px}
+.count div{background:var(--ink2);border-radius:14px;padding:12px 16px;min-width:76px;text-align:center}
+.count b{display:block;font-family:var(--display);font-size:1.6rem;color:var(--sun)}
+.count small{color:var(--muted);font-size:.78rem}
+.bot{width:100%;max-width:420px;margin:auto;display:block;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 30px 40px #00000066)}
+@keyframes float{50%{transform:translateY(-14px)}}
+.hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:8px}
+
+/* MARQUEE */
+.strip{background:var(--sun);color:var(--ink);overflow:hidden;white-space:nowrap;padding:12px 0;font-family:var(--display);font-weight:800;transform:rotate(-1.2deg);margin:-26px -10px 0;position:relative;z-index:2}
+.strip div{display:inline-block;animation:slide 24s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:96px 0}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4.5vw,3rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
+.light{background:var(--paper);color:var(--ink)}
+.light .muted{color:#4b4580}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about p{margin-bottom:14px;font-size:1.1rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat{background:var(--ink);color:var(--txt);border-radius:22px;padding:26px}
+.stat:nth-child(2){background:var(--volt);transform:translateY(22px)}
+.stat:nth-child(3){background:var(--ink2)}
+.stat:nth-child(4){background:var(--sun);color:var(--ink);transform:translateY(22px)}
+.stat b{font-family:var(--display);font-size:2.4rem;display:block;line-height:1}
+
+/* EVENTS */
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+.card{background:var(--ink2);border-radius:26px;padding:28px;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--c);transform:translateY(-6px)}
+.card svg{width:76px;height:76px;margin-bottom:18px}
+.card h3{font-family:var(--display);font-size:1.25rem;margin-bottom:8px;color:var(--c)}
+.card p{color:var(--muted);margin-bottom:16px}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tags span{background:#ffffff14;padding:4px 12px;border-radius:99px;font-size:.82rem}
+.prize{margin-top:16px;font-family:var(--display);font-weight:800;color:var(--c)}
+
+/* REGISTER */
+.reg{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+form{background:var(--ink);border-radius:28px;padding:30px;color:var(--txt)}
+#fields{display:grid;gap:14px}
+label{font-size:.9rem;color:var(--muted)}
+input,select{width:100%;padding:13px 14px;margin-top:5px;border-radius:12px;border:2px solid #ffffff26;background:var(--ink2);color:var(--txt);font:inherit}
+input:focus,select:focus{border-color:var(--mint);outline:none}
+#ok{display:none;text-align:center;padding:30px;font-family:var(--display);color:var(--mint)}
+.perks{list-style:none;display:grid;gap:12px;margin-top:20px}
+.perks li{padding-left:34px;position:relative;font-size:1.08rem}
+.perks li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:4px;background:var(--volt);transform:rotate(45deg)}
+
+/* FOOTER */
+footer{background:#0d0a28;padding:60px 0 30px;border-top:4px solid var(--volt)}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:900;font-size:1.6rem}
+.brand b{color:var(--volt)}
+footer p{color:var(--muted);max-width:36ch;margin-top:8px}
+footer ul{list-style:none}
+footer li{margin-bottom:6px}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--sun)}
+.copy{margin-top:40px;padding-top:20px;border-top:1px solid #ffffff18;color:var(--muted);font-size:.85rem}
+
+/* MOBILE */
+@media(max-width:860px){
+  nav ul{display:none}
+  .hero .wrap,.about,.reg{grid-template-columns:1fr}
+  .events{grid-template-columns:1fr}
+  .bot{max-width:300px}
+  section{padding:70px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">ROBO<b>FEST</b></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#register">Register</a></li>
+    </ul>
+    <a class="btn" href="#register" style="padding:10px 18px;box-shadow:none">Register</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="status"><i></i> Registrations are open</div>
+      <h1>ROBO<span>FEST</span>2026</h1>
+      <p class="lead">Build it. Wire it. Race it. Three days where student-built machines fight for the arena, hosted by ROBOTiX Club.</p>
+      <div class="cta-row">
+        <a class="btn" href="#register">Register your team</a>
+        <a class="btn alt" href="#events">See the events</a>
+      </div>
+      <div class="count" aria-label="Countdown to Robofest">
+        <div><b id="d">00</b><small>days</small></div>
+        <div><b id="h">00</b><small>hours</small></div>
+        <div><b id="m">00</b><small>mins</small></div>
+        <div><b id="s">00</b><small>secs</small></div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Robot mascot: pupils follow the cursor -->
+      <svg class="bot" viewBox="0 0 400 420" role="img" aria-label="Robofest robot mascot">
+        <line x1="200" y1="30" x2="200" y2="78" stroke="#ffc23d" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="200" cy="26" r="14" fill="#ff5d8f"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+        <rect x="70" y="78" width="260" height="190" rx="52" fill="#ffc23d"/>
+        <rect x="92" y="100" width="216" height="146" rx="36" fill="#15103d"/>
+        <rect x="48" y="140" width="22" height="70" rx="10" fill="#ff5d8f"/>
+        <rect x="330" y="140" width="22" height="70" rx="10" fill="#ff5d8f"/>
+        <circle cx="150" cy="160" r="30" fill="#f3f0ff"/>
+        <circle cx="250" cy="160" r="30" fill="#f3f0ff"/>
+        <circle id="pl" cx="150" cy="160" r="13" fill="#15103d"/>
+        <circle id="pr" cx="250" cy="160" r="13" fill="#15103d"/>
+        <path d="M160 218 Q200 240 240 218" stroke="#38efc4" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <rect x="120" y="282" width="160" height="96" rx="26" fill="#ff5d8f"/>
+        <circle cx="165" cy="330" r="11" fill="#15103d"/>
+        <circle cx="200" cy="330" r="11" fill="#ffc23d"/>
+        <circle cx="235" cy="330" r="11" fill="#38efc4"/>
+        <rect x="100" y="388" width="70" height="22" rx="11" fill="#ffc23d"/>
+        <rect x="230" y="388" width="70" height="22" rx="11" fill="#ffc23d"/>
+      </svg>
+      <p class="hint">Move your mouse. He's watching.</p>
+    </div>
+  </div>
+</header>
+
+<div class="strip" aria-hidden="true">
+  <div>LINE FOLLOWER &nbsp;✦&nbsp; ROBO WARS &nbsp;✦&nbsp; MAZE SOLVER &nbsp;✦&nbsp; BUILD · CODE · COMPETE &nbsp;✦&nbsp; LINE FOLLOWER &nbsp;✦&nbsp; ROBO WARS &nbsp;✦&nbsp; MAZE SOLVER &nbsp;✦&nbsp; BUILD · CODE · COMPETE &nbsp;✦&nbsp; LINE FOLLOWER &nbsp;✦&nbsp; ROBO WARS &nbsp;✦&nbsp; MAZE SOLVER &nbsp;✦&nbsp; BUILD · CODE · COMPETE &nbsp;✦&nbsp;</div>
+</div>
+
+<section class="light" id="about">
+  <div class="wrap about">
+    <div>
+      <h2>A festival for people who build things that move.</h2>
+      <p class="muted">Robofest is the annual robotics festival run by ROBOTiX Club. Students bring circuits, code and a lot of duct tape, and leave with trophies, new teammates and a few good stories.</p>
+      <p class="muted">Whether this is your first robot or your tenth, there is a bracket for you, plus workshops where you can learn sensors, motors and Arduino from scratch.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3</b>Days of events</div>
+      <div class="stat"><b>30+</b>Teams expected</div>
+      <div class="stat"><b>3</b>Arena battles</div>
+      <div class="stat"><b>₹50K</b>Prize pool</div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <h2>Pick your arena.</h2>
+    <p class="lead" style="margin-bottom:0">Three competitions. One scoreboard.</p>
+    <div class="events">
+
+      <article class="card" style="--c:var(--mint)">
+        <svg viewBox="0 0 80 80" fill="none" stroke="#38efc4" stroke-width="4" stroke-linecap="round">
+          <path d="M6 66 C26 66 20 40 40 40 S56 14 74 14" stroke-dasharray="2 9"/>
+          <rect x="28" y="30" width="26" height="20" rx="6" fill="#38efc4" stroke="none"/>
+          <circle cx="32" cy="56" r="5" fill="#38efc4" stroke="none"/><circle cx="50" cy="56" r="5" fill="#38efc4" stroke="none"/>
+        </svg>
+        <h3>Line Follower</h3>
+        <p>Your bot reads a track with IR sensors and chases the fastest lap. Smooth PID wins, wobbly code loses.</p>
+        <div class="tags"><span>Solo or team of 3</span><span>Autonomous</span></div>
+        <div class="prize">Prize ₹10,000</div>
+      </article>
+
+      <article class="card" style="--c:var(--volt)">
+        <svg viewBox="0 0 80 80" fill="none" stroke="#ff5d8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="34" width="26" height="22" rx="5" fill="#ff5d8f" stroke="none"/>
+          <rect x="46" y="34" width="26" height="22" rx="5"/>
+          <path d="M34 42 L46 42 M40 18 L40 30 M30 22 L36 28 M50 22 L44 28"/>
+        </svg>
+        <h3>Robo Wars</h3>
+        <p>Remote-controlled bots go head to head in a steel-walled arena. Last machine moving takes the title.</p>
+        <div class="tags"><span>Team of 4</span><span>Weight limit 8 kg</span></div>
+        <div class="prize">Prize ₹25,000</div>
+      </article>
+
+      <article class="card" style="--c:var(--sun)">
+        <svg viewBox="0 0 80 80" fill="none" stroke="#ffc23d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 8 H72 V72 H24 V40 H56 V24 H40 V56 H8 Z"/>
+          <circle cx="16" cy="64" r="5" fill="#ffc23d" stroke="none"/>
+        </svg>
+        <h3>Maze Solver</h3>
+        <p>Drop your bot at the start of an unknown maze. It must map the walls and find the exit on its own.</p>
+        <div class="tags"><span>Team of 2</span><span>Autonomous</span></div>
+        <div class="prize">Prize ₹15,000</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="light" id="register">
+  <div class="wrap reg">
+    <div>
+      <h2>Your team. Your robot. Your seat in the arena.</h2>
+      <p class="muted" style="font-size:1.1rem">Fill in the form and we'll email your team a confirmation and the rulebook.</p>
+      <ul class="perks">
+        <li>Free entry to all workshops</li>
+        <li>Certificates for every participant</li>
+        <li>Lunch and refreshments for registered teams</li>
+      </ul>
+    </div>
+    <form id="form">
+      <div id="fields">
+        <label>Team name<input required name="team" placeholder="e.g. Volt Rangers"></label>
+        <label>Leader's email<input required type="email" name="email" placeholder="you@college.edu"></label>
+        <label>Event
+          <select name="event">
+            <option>Line Follower</option><option>Robo Wars</option><option>Maze Solver</option>
+          </select>
+        </label>
+        <label>Number of members<input type="number" min="1" max="4" value="2"></label>
+        <button class="btn" type="submit">Register my team</button>
+      </div>
+      <div id="ok" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">ROBOT<b>i</b>X Club</div>
+        <p>The student robotics club behind Robofest. We build, break, fix and repeat.</p>
+      </div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+      <ul>
+        <li><a href="mailto:robotix@example.com">robotix@example.com</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+    <div class="copy">© 2026 ROBOTiX Club. Built with HTML, CSS and JavaScript.</div>
+  </div>
+</footer>
+
+<script>
+// 1. Robot pupils follow the cursor (or finger)
+const pl=document.getElementById('pl'), pr=document.getElementById('pr');
+function look(e){
+  const p=e.touches?e.touches[0]:e;
+  const r=document.querySelector('.bot').getBoundingClientRect();
+  const dx=(p.clientX-(r.left+r.width/2))/innerWidth;
+  const dy=(p.clientY-(r.top+r.height*.4))/innerHeight;
+  const x=Math.max(-1,Math.min(1,dx*3))*11, y=Math.max(-1,Math.min(1,dy*3))*11;
+  pl.setAttribute('cx',150+x); pl.setAttribute('cy',160+y);
+  pr.setAttribute('cx',250+x); pr.setAttribute('cy',160+y);
+}
+addEventListener('mousemove',look); addEventListener('touchmove',look,{passive:true});
+
+// 2. Countdown (change the date here)
+const target=new Date('2026-12-18T09:00:00');
+function tick(){
+  const t=Math.max(0,target-new Date());
+  const f=n=>String(n).padStart(2,'0');
+  d.textContent=f(Math.floor(t/864e5)); h.textContent=f(Math.floor(t/36e5%24));
+  m.textContent=f(Math.floor(t/6e4%60)); s.textContent=f(Math.floor(t/1e3%60));
+}
+tick(); setInterval(tick,1000);
+
+// 3. Front-end only registration (no backend)
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  fields.style.display='none';
+  ok.style.display='block';
+  ok.textContent='Robot online! '+form.team.value.trim()+' is registered for '+form.event.value+'. Check your inbox.';
+});
+</script>
+</body>
+</html>
